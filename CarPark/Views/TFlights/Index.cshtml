@@ -1,0 +1,97 @@
+﻿@model IEnumerable<CarPark.Models.TFlight>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Рейси</h1>
+@if (User.IsInRole(WebConstants.SupervisorRole))
+{
+    <p>
+        <a asp-action="Create">Додати рейс</a>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Місто відправки
+            </th>
+            <th>
+                Місто прибуття
+            </th>
+            <th>
+                Дата відправки
+            </th>
+            <th>
+                Дата прибуття
+            </th>
+            <th>
+                Рейс закінчено
+            </th>
+            <th>
+                Рейс скасовано
+            </th>
+            <th>
+                Автобус
+            </th>
+            <th>
+                Водій
+            </th>
+            <th>
+                Маршрут
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Route.BcityNavigation.CityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Route.EcityNavigation.CityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BdateRoute)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EdateRoute)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCanselet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bus.Numer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Driver.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Route.RouteId)
+                </td>
+                @if (User.IsInRole(WebConstants.ClientRole))
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.FlightsId">Деталі</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.FlightsId">Редагувати</a> |
+                        <a asp-action="Details" asp-route-id="@item.FlightsId">Деталі</a> |
+                        <a asp-action="Delete" asp-route-id="@item.FlightsId">Видалити</a>
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>

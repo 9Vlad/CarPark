@@ -1,0 +1,53 @@
+﻿@model CarPark.Models.DBuse
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Додати</h1>
+
+<h4>Автобуси</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label">Бренд</label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Years" class="control-label">Роки</label>
+                <input asp-for="Years" class="form-control" />
+                <span asp-validation-for="Years" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Numer" class="control-label">Номер</label>
+                <input asp-for="Numer" class="form-control" />
+                <span asp-validation-for="Numer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label">Стан</label>
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label">Замітки</label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Додати" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад до списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

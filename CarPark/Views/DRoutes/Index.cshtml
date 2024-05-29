@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CarPark.Models.DRoute>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Маршрути</h1>
+
+<p>
+    <a asp-action="Create">Додати маршрут</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Довжина
+            </th>
+            <th>
+                Час поїздки
+            </th>
+            <th>
+                Працюючий
+            </th>
+            <th>
+                Замітки
+            </th>
+            <th>
+                Місце виїзду
+            </th>
+            <th>
+                Місце прибуття
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RouteLen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RouteTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BcityNavigation.CityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EcityNavigation.CityName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RouteId">Редагувати</a> |
+                <a asp-action="Details" asp-route-id="@item.RouteId">Деталі</a> |
+                <a asp-action="Delete" asp-route-id="@item.RouteId">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

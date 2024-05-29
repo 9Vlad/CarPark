@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CarPark.Models.DBuse>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Автобуси</h1>
+
+<p>
+    <a asp-action="Create">Додати автобус</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Бренд
+            </th>
+            <th>
+                Роки
+            </th>
+            <th>
+                Номер
+            </th>
+            <th>
+                Стан
+            </th>
+            <th>
+                Замітка
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Years)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BusId">Редагувати</a> |
+                <a asp-action="Details" asp-route-id="@item.BusId">Деталі</a> |
+                <a asp-action="Delete" asp-route-id="@item.BusId">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

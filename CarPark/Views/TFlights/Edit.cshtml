@@ -1,0 +1,64 @@
+﻿@model CarPark.Models.TFlight
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Редагувати</h1>
+
+<h4>Рейс</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="FlightsId" />
+            <div class="form-group">
+                <label asp-for="RouteId" class="control-label">Маршрут</label>
+                <select asp-for="RouteId" class="form-control" asp-items="ViewBag.RouteId"></select>
+                <span asp-validation-for="RouteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BusId" class="control-label">Автобус</label>
+                <select asp-for="BusId" class="form-control" asp-items="ViewBag.BusId"></select>
+                <span asp-validation-for="BusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverId" class="control-label">Водій</label>
+                <select asp-for="DriverId" class="form-control" asp-items="ViewBag.DriverId"></select>
+                <span asp-validation-for="DriverId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BdateRoute" class="control-label">Дата відправки</label>
+                <input asp-for="BdateRoute" class="form-control" />
+                <span asp-validation-for="BdateRoute" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EdateRoute" class="control-label">Дата прибуття</label>
+                <input asp-for="EdateRoute" class="form-control" />
+                <span asp-validation-for="EdateRoute" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsEnd" class="form-check-label">Закінчений</label>
+                <input asp-for="IsEnd" class="form-check-control" />
+                <span asp-validation-for="IsEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsCanselet" class="form-check-label">Скасований</label>
+                <input asp-for="IsCanselet" class="form-check-control" />
+                <span asp-validation-for="IsCanselet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зберегти" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад до списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CarPark.Models.TBill>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Білети</h1>
+
+@if (User.IsInRole(WebConstants.SupervisorRole))
+{
+    <p>
+        <a asp-action="Create">Додати білет</a>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Номер
+            </th>
+            @if (User.IsInRole(WebConstants.SupervisorRole))
+            {
+                <th>
+                    Клієнт
+                </th>
+            }
+            
+            <th>
+                Маршрут
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillId)
+                </td>
+                @if (User.IsInRole(WebConstants.SupervisorRole))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client.Email)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Flights.FlightsId)
+                </td>
+                @if (User.IsInRole(WebConstants.SupervisorRole))
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.FlightsId">Деталі</a> |
+                        <a asp-action="Delete" asp-route-id="@item.FlightsId">Видалити</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.FlightsId">Деталі</a>
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
